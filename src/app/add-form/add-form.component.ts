@@ -1,6 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { IClient, MODES } from '../model/client.model';
+import { isFormGroupValidated } from '../utils/common';
+
+function russiaPhoneValidator(control: AbstractControl): ValidationErrors | null {
+  const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/; // Российский формат номера +7 (XXX) XXX-XX-XX
+  if (control.value && !(phoneRegex.test(control.value))) {
+    return { invalidRussiaPhone: true };
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-add-form',
@@ -17,11 +26,10 @@ export class AddFormComponent implements OnInit {
 
   formGroup: UntypedFormGroup = new UntypedFormGroup(
     {
-      id: new UntypedFormControl(null, [Validators.required]),
-      name: new UntypedFormControl(null, [Validators.required]),
-      surname: new UntypedFormControl(null, [Validators.required]),
-      email: new UntypedFormControl(null, [Validators.required]),
-      phone: new UntypedFormControl(null, [Validators.required]),
+      name: new UntypedFormControl(null, [Validators.required, Validators.minLength(2)]),
+      surname: new UntypedFormControl(null, [Validators.required, Validators.minLength(2)]),
+      email: new UntypedFormControl(null, [Validators.required, Validators.email]),
+      phone: new UntypedFormControl(null, [Validators.required, russiaPhoneValidator]),
     },
   )
 
@@ -29,7 +37,6 @@ export class AddFormComponent implements OnInit {
     this.formGroup.reset()
     if(this.mode === MODES.EDIT){
       this.formGroup.patchValue({
-        id: this.item?.id,
         name: this.item?.name,
         surname: this.item?.surname,
         email: this.item?.email,
@@ -39,14 +46,17 @@ export class AddFormComponent implements OnInit {
   }
 
   onSubmit(){
-    const controls = this.formGroup.controls
-    const data: IClient = {
-      id: this.mode === 'add' ? Math.floor(Math.random() * 99999999) + 1 : controls['id'].value,
-      name: controls['name'].value,
-      surname: controls['surname'].value,
-      email: controls['email'].value,
-      phone: controls['phone'].value,
+    if(isFormGroupValidated(this.formGroup)){
+        const controls = this.formGroup.controls
+        const data: IClient = {
+          id: this.mode === MODES.ADD ? Math.floor(Math.random() * 99999999) + 1 : this.item?.id,
+          name: controls['name'].value,
+          surname: controls['surname'].value,
+          email: controls['email'].value,
+          phone: controls['phone'].value,
+       }
+      this.submit.emit({mode: this.mode, item: data})
     }
-    this.submit.emit({mode: this.mode, item: data})
+    
   }
 }

@@ -1,14 +1,17 @@
 <div class="form">
     <form class="form__content" [formGroup]="formGroup">
         <div class="title p40">{{title}}</div>
-        <div class="p40"><input formControlName="name" placeholder="Имя" type="text" pInputText></div>
-        <div class="p40"><input formControlName="surname" placeholder="Фамилия" type="text" pInputText></div>
-        <div class="p40"><input formControlName="email" placeholder="E-mail" type="text" pInputText></div>
-        <div class="p40"><input formControlName="phone" placeholder="Телефон" type="text" pInputText></div>
+        <div class="p40"><input formControlName="name" placeholder="Имя" [ngClass]="{ 'invalid': formGroup.get('name')!.invalid && (formGroup.get('name')!.dirty || formGroup.get('name')!.touched) }" type="text" pInputText></div>
+        <div class="p40"><input formControlName="surname" placeholder="Фамилия" [ngClass]="{ 'invalid': formGroup.get('surname')!.invalid && (formGroup.get('surname')!.dirty || formGroup.get('surname')!.touched) }" type="text" pInputText></div>
+        <div class="p40"><input formControlName="email" placeholder="E-mail" [ngClass]="{ 'invalid': formGroup.get('email')!.invalid && (formGroup.get('email')!.dirty || formGroup.get('email')!.touched) }" type="text" pInputText></div>
+        <div class="p40">
+            <input formControlName="phone" placeholder="Телефон" [ngClass]="{ 'invalid': formGroup.get('phone')!.invalid && (formGroup.get('phone')!.dirty || formGroup.get('phone')!.touched) }" type="text" pInputText>
+            <span style="font-size: 10px; color: grey; padding-left: 5px;">Russian format is +7 (XXX) XXX-XX-XX</span>
+        </div>
         <div style="width: 100%;">
             <div class="button__wrapper">
                 <p-button label="Отмена" [text]="true" (click)="cancel.emit()"></p-button>
-                <p-button (click)="onSubmit()">Сохранить</p-button>
+                <p-button (click)="onSubmit()" [disabled]="formGroup.invalid">Сохранить</p-button>
             </div>
         </div>
     </form>

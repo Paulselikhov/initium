@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IClient, IClientWithSelect, MODES } from '../model/client.model';
-import { ClientService } from './service/clients.service';
+import { ClientService } from '../service/clients.service';
 
 @Component({
   selector: 'app-table',
