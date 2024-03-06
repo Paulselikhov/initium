@@ -4,7 +4,7 @@ import { IClient, MODES } from '../model/client.model';
 import { isFormGroupValidated } from '../utils/common';
 
 function russiaPhoneValidator(control: AbstractControl): ValidationErrors | null {
-  const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/; // Российский формат номера +7 (XXX) XXX-XX-XX
+  const phoneRegex = /^\+7\d{3}\d{3}\d{2}\d{2}$/;
   if (control.value && !(phoneRegex.test(control.value))) {
     return { invalidRussiaPhone: true };
   }
