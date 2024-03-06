@@ -1,0 +1,36 @@
+<div class="clients"><span>Клиенты</span></div>
+<div class="table__wrapper">
+  <div class="table__bar">
+    <div class="button" (click)="openForm(MODES.ADD)"><img src="../../assets/Vector_add.png"></div>
+    <div class="button" (click)="deleteDialogVisibleChange()"><img src="../../assets/Vector_delete.png"></div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 20px;"><input type="checkbox" class="checkbox" [(ngModel)]="selectAll" (change)="selectAllItems()"></th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>E-mail</th>
+        <th>Телефон</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let col of tableItems">
+        <td><input type="checkbox" class="checkbox" [value]="col.id" [(ngModel)]="col.selected" (change)="itemSelectionChanged()"></td>
+        <td><a href="#" (click)="openForm(MODES.EDIT, col)">{{col.name}}</a></td>
+        <td>{{col.surname}}</td>
+        <td>{{col.email}}</td>
+        <td>{{col.phone}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="isFormVisible" class="modal__wrapper">
+  <app-add-form [title]="'Новый клиент'" [mode]="mode" [item]="item" (cancel)="cancel()"
+    (submit)="submit($event)"></app-add-form>
+</div>
+
+<div *ngIf="isDeleteDialogVisible" class="modal__wrapper">
+  <app-delete-form (cancel)="cancelDeleteDialog()" (deleteItem)="deleteItem()"></app-delete-form>
+</div>

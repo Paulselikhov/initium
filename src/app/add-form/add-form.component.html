@@ -1,0 +1,17 @@
+<div class="form">
+    <form class="form__content" [formGroup]="formGroup">
+        <div class="title p40">{{title}}</div>
+        <div class="p40"><input formControlName="name" placeholder="Имя" type="text" pInputText></div>
+        <div class="p40"><input formControlName="surname" placeholder="Фамилия" type="text" pInputText></div>
+        <div class="p40"><input formControlName="email" placeholder="E-mail" type="text" pInputText></div>
+        <div class="p40"><input formControlName="phone" placeholder="Телефон" type="text" pInputText></div>
+        <div style="width: 100%;">
+            <div class="button__wrapper">
+                <p-button label="Отмена" [text]="true" (click)="cancel.emit()"></p-button>
+                <p-button (click)="onSubmit()">Сохранить</p-button>
+            </div>
+        </div>
+    </form>
+</div>
+
+

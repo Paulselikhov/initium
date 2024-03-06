@@ -1,0 +1,77 @@
+.clients{
+    margin-bottom: 26px;
+    span{
+        color: rgba(47, 127, 213, 1);
+        font-weight: 600;
+        font-size: 26px;
+        padding-left: 10px;
+    }
+}
+
+.checkbox{
+    width: 20px;
+    height: 20px;
+}
+
+.table__wrapper{
+    background-color: white;
+    padding: 16px;
+    border-radius: 20px;
+    .table__bar{
+        display: flex;
+        gap: 5px;
+        margin-left: 6px;
+        .button{
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            img{
+                width: 20px;
+                height: 20px;
+            }
+    
+            
+        }
+        .button:hover{
+            background-color: rgba(226, 238, 255, 1);
+        }
+    }
+    table{
+        border-spacing: 0; /* Установить расстояние между ячейками в 0 */
+        border-collapse: collapse; /* Объединить границы ячеек */ 
+        width: 100%;
+        thead{
+            color: rgb(84, 84, 201);
+        }
+        tr{
+            text-align: left;
+        }
+        th, td{
+            padding: 10px !important;
+            border: unset;
+            padding: unset;
+            margin: unset;
+            border-bottom: 1px solid rgb(241, 233, 233);
+        }
+
+    }
+}
+
+.modal__wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Цвет фона с прозрачностью */
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+

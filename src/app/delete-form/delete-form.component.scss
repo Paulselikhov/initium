@@ -1,0 +1,40 @@
+.form{
+    position: absolute;
+    top: 50px;
+    left: 25%;
+    background-color: white;
+    width: 448px;
+
+    border-radius: 5px;
+    padding: 44px 40px;
+    margin: 0px auto;
+    display: flex;
+    justify-content: center;
+
+    .form__content{
+        width: 368px;
+        display: flex;
+        align-items:flex-start;
+        flex-direction: column;
+
+        .title{
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .p20{
+            padding-bottom: 20px;
+        }
+
+        .p60{
+            padding-bottom: 40px;
+        }
+
+        .button__wrapper{
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+    }   
+    
+}

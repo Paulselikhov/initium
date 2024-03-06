@@ -1,0 +1,12 @@
+<div class="form">
+    <div class="form__content">
+        <div class="title p20">Удаление строк</div>
+        <div class="p60">Удалить выбранные строки?</div>
+        <div style="width: 100%;">
+            <div class="button__wrapper">
+                <p-button label="Отмена" [text]="true" (click)="cancel.emit()"></p-button>
+                <p-button (click)="deleteItem.emit()">Удалить</p-button>
+            </div>
+        </div>
+    </div>
+</div>
