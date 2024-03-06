@@ -12,7 +12,7 @@
 
   },
   "private": true,
-  "homepage": "https://Paulselikhov.github.io/initium/",
+  "homepage": "https://paulselikhov.github.io/initium/",
   "dependencies": {
     "@angular/animations": "^16.2.0",
     "@angular/common": "^16.2.0",
